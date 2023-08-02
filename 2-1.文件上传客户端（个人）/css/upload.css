@@ -1,0 +1,240 @@
+/* 单一文件上传「FORM-DATA」*/
+.upload_box{
+    position: relative;
+    padding: 10px;
+    box-sizing: border-box;
+    width: 400px;
+    min-height: 150px;
+    border: 3px dashed rgb(218, 232, 233);
+}
+
+/* 隐藏原生的上传文件按钮 */
+.upload_box .upload_inp{
+    display: none;
+}
+
+/* 选择文件按钮 / 上传到服务器按钮的 共同样式*/
+.upload_box .upload_button{
+    position: relative;
+    margin-right: 10px;
+    min-width: 80px;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 30px;
+    border: none;
+    cursor: pointer;
+    background-color:#DDD ;
+    overflow: hidden;  /*将伪类隐藏出来*/
+}
+
+/* 选择文件按钮 / 上传到服务器按钮 共同样式、添加伪类*/
+.upload_box .upload_button::after{
+    position: absolute;
+    top: 30px;
+    left: 0;
+    z-index: 999;
+    transition: top .3s;
+    width: 100%;
+    height: 100%;
+    padding-left: 25px;
+    box-sizing:border-box ;
+    text-align: left;
+    content: 'loading...';
+    background:#eee url('../images/loading.gif') no-repeat 5px center ;
+    color: #999;
+}
+.upload_box .upload_button::before{
+    position: absolute;
+    top: -30px;
+    left: 0;
+    z-index: 999;
+    transition: top .3s;
+    width: 100%;
+    height: 100%;
+    padding-left: 25px;
+    box-sizing:border-box ;
+    text-align: left;
+    content: '';
+    background:#eee ;
+    color: #999;
+}
+
+/* 文件上传中，鼠标恢复默认 */
+.upload_box .upload_button.loading{
+    cursor: inherit;
+}
+
+/* 过渡 */
+.upload_box .upload_button.loading:after,.upload_box .upload_button.loading::before {
+    top: 0;
+}
+
+/* 选择文件按钮 */
+.upload_box .upload_button.select {
+    background: #409eff;
+    color: #FFF;
+}
+
+/* 上传到服务器按钮 */
+.upload_box .upload_button.upload {
+    background: #67c23a;
+    color: #FFF;
+}
+
+.upload_box .upload_button.disable {
+    background: #EEE;
+    color: #999;
+    cursor: inherit;
+}
+
+/* 提示 */
+.upload_box .upload_tip {
+    margin-top: 10px;
+    line-height: 25px;
+    color: #999;
+    font-size: 12px;
+}
+
+.upload_box .upload_list{
+    display: none;
+}
+
+/* 上传的文件列表 */
+.upload_box .upload_list {
+    margin-top: 10px;
+}
+
+.upload_box .upload_list li {
+    display: flex;
+    align-items: center;
+    line-height: 25px;
+    font-size: 0;
+}
+
+
+.upload_box .upload_list li span {
+    display: inline-block;
+    margin-right: 10px;
+    max-width: 70%;
+    color: #999;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/* 移除 */
+.upload_box .upload_list li span em {
+    padding: 0 5px;
+    color: lightcoral;
+    cursor: pointer;
+    font-style: normal;
+    border: 1px solid red;
+    border-radius: 3px;
+}
+
+.upload_box .upload_abbre,
+.upload_box .upload_progress {
+    margin-top: 10px;
+}
+
+.upload_box .upload_abbre img {
+    display: block;
+    width: 100%;
+}
+
+/* 进度条盒子 */
+.upload_box .upload_progress {
+    position: relative;
+    height: 20px;
+    background: #EEE;
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+}
+
+/* 进度条 */
+.upload_box .upload_progress .value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    width: 0%;
+    background: #67c23a;
+    text-align: right;
+    border-radius: 10px;
+    box-sizing: border-box;
+    transition: width .1s;
+}
+
+/* 拖拽上传 */
+.upload_box .upload_drag {
+    height: 130px;
+    position: relative;
+}
+
+/* 居中 */
+.upload_box .upload_drag .icon,
+.upload_box .upload_drag .text {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 图标 */
+.upload_box .upload_drag .icon {
+    top: 40%;
+    width: 80px;
+    height: 62px;
+    background: url("upload.png") no-repeat;
+    background-size: 100% 100%;
+}
+
+.upload_box .upload_drag .text {
+    top: 80%;
+    line-height: 25px;
+    color: #999;
+    font-size: 12px;
+}
+.upload_box .upload_drag .text a {
+    color: #409eff;
+}
+/* 遮罩层 */
+.upload_box .upload_mark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .8);
+    font-size: 12px;
+    color: #FFF;
+    text-align: center;
+    line-height: 150px;
+    display: none;
+}
+
+#upload6{
+    position: relative;
+    padding: 0;
+}
+
+
+#upload7 .upload_progress {
+    position: relative;
+    height: 5px;
+    background: #EEE;
+}
+
+#upload7 .upload_progress .value {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    height: 100%;
+    width: 0%;
+    background: #67c23a;
+    /* transition: width .3s; */
+}
